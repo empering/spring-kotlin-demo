@@ -8,7 +8,7 @@ import java.util.*
 class TravelFundsService(
         var travelFundsRepository: TravelFundsRepository
 ) {
-    fun putRequest(travelFundsRequest: TravelFundsRequest) {
+    fun saveRequest(travelFundsRequest: TravelFundsRequest) {
         travelFundsRepository.save(travelFundsRequest)
     }
 
