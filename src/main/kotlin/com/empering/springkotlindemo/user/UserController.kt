@@ -9,26 +9,31 @@ class UserController(
 ) {
     @PutMapping()
     fun putUser(user: User) {
-        println(user.toString())
+        this.printUser(user)
         userService.putUser(user)
     }
 
     @GetMapping("/all")
     fun getUserAll() {
-        userService.getAllUsers().forEach { user: User? ->
-            println(user.toString())
+        userService.getAllUsers().forEach { user: User ->
+            this.printUser(user)
         }
     }
 
     @GetMapping("{id}")
     fun getUser(@PathVariable id: Long) {
-        println(userService.getUser(id))
+        this.printUser(userService.getUser(id).get())
     }
 
     @GetMapping("/search/{name}")
     fun getUserByName(@PathVariable name: String) {
+        println("SEARCH_NAME IS ${name}")
         userService.getUser(name).forEach { user: User ->
-            println(user.toString())
+            this.printUser(user)
         }
+    }
+
+    private fun printUser(user: User) {
+        println("${user.id} : ${user.name} (${user.email} / ${user.position})")
     }
 }
