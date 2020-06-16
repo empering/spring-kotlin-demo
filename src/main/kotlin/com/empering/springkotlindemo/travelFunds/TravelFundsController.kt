@@ -1,22 +1,29 @@
 package com.empering.springkotlindemo.travelFunds
 
+import com.empering.springkotlindemo.user.User
+import com.empering.springkotlindemo.user.UserRepository
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/travel-funds")
+@RequestMapping("/travel-funds/{userId}")
 class TravelFundsController(
-        var travelFundsRepository: TravelFundsRepository
+        var travelFundsRepository: TravelFundsRepository,
+        var userRepository: UserRepository
 ) {
 
+    @ModelAttribute("user")
+    fun findUser(@PathVariable userId: Long): User = userRepository.findById(userId).get()
+
     @PostMapping()
-    fun putRequest(@Validated travelFundsRequest: TravelFundsRequest) {
+    fun postRequest(travelFundsRequest: TravelFundsRequest, user: User) {
+        travelFundsRequest.user = user
         travelFundsRequest.toString()
         travelFundsRepository.save(travelFundsRequest)
     }
 
     @GetMapping("/all")
-    fun getRequest() {
+    fun getRequestAll() {
         travelFundsRepository.findAll().forEach {
             travelFundsRequest: TravelFundsRequest? ->
             println(travelFundsRequest.toString())
