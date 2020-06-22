@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 class UserController(
         var userService: UserService
 ) {
-    @PutMapping()
+    @PutMapping
     fun putUser(user: User) {
         this.printUser(user)
         userService.putUser(user)
@@ -27,7 +27,7 @@ class UserController(
 
     @GetMapping("/search/{name}")
     fun getUserByName(@PathVariable name: String) {
-        println("SEARCH_NAME IS ${name}")
+        println("SEARCH_NAME IS $name")
         userService.getUser(name).forEach { user: User ->
             this.printUser(user)
         }

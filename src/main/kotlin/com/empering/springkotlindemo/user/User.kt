@@ -5,7 +5,7 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-class User() {
+class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null

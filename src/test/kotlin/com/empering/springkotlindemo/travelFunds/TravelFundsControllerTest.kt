@@ -46,7 +46,7 @@ class TravelFundsControllerTest(
         user.email = "test@ibdata.co.kr"
         user.position = "A"
 
-        request1.travelBusiniss = "테스트"
+        request1.travelBusiness = "테스트"
         request1.travelArea = "경기도 고양시 일산"
         request1.travelOrgan = "한국건설기술연구원"
         request1.nights = 5
@@ -55,7 +55,7 @@ class TravelFundsControllerTest(
         request1.startDate = df.parse("2020-01-05")
         request1.endDate = df.parse("2020-01-11")
 
-        request2.travelBusiniss = "테스트"
+        request2.travelBusiness = "테스트"
         request2.travelArea = "경기도 고양시 일산"
         request2.travelOrgan = "한국건설기술연구원"
         request2.nights = 10

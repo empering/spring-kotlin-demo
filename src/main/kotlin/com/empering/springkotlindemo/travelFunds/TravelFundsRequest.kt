@@ -2,16 +2,15 @@ package com.empering.springkotlindemo.travelFunds
 
 import com.empering.springkotlindemo.user.User
 import org.springframework.format.annotation.DateTimeFormat
-import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 
 @Entity
-class TravelFundsRequest() {
+class TravelFundsRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
-    var travelBusiniss: String? = ""
+    var travelBusiness: String? = ""
     var travelArea: String? = ""
     var travelOrgan: String? = ""
 
