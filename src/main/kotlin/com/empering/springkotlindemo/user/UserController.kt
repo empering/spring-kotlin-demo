@@ -13,24 +13,40 @@ class UserController(
         userService.putUser(user)
     }
 
+    @ResponseBody
     @GetMapping("/all")
-    fun getUserAll() {
-        userService.getAllUsers().forEach { user: User ->
+    fun getUserAll(): MutableIterable<User> {
+        val allUsers = userService.getAllUsers()
+
+        allUsers.forEach { user: User ->
             this.printUser(user)
         }
+
+        return allUsers
     }
 
+    @ResponseBody
     @GetMapping("{id}")
-    fun getUser(@PathVariable id: Long) {
-        this.printUser(userService.getUser(id).get())
+    fun getUser(@PathVariable id: Long): User {
+        val user = userService.getUser(id).get();
+
+        this.printUser(user)
+
+        return user
     }
 
+    @ResponseBody
     @GetMapping("/search/{name}")
-    fun getUserByName(@PathVariable name: String) {
+    fun getUserByName(@PathVariable name: String): MutableIterable<User> {
         println("SEARCH_NAME IS $name")
-        userService.getUser(name).forEach { user: User ->
+
+        val users = userService.getUser(name);
+
+        users.forEach { user: User ->
             this.printUser(user)
         }
+
+        return users
     }
 
     private fun printUser(user: User) {
